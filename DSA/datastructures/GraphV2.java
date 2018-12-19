@@ -78,8 +78,32 @@ public class GraphV2 {
 		}
 	}
 
-	
-	
+	public void removeAdjacent(Node src, Node dest){
+		if(map.containsKey(src.value)) {
+			if(map.get(src.value).contains(dest.value)) {
+				map.get(src.value).remove(dest.value);
+				edges--;
+				System.out.println("Edge removed from "+src.value+" to "+dest.value);
+			}
+		}
+	}
+	public void removeVertex(Node src){
+		
+		if(src.set.isEmpty()) {
+			
+			if(!map.keySet().contains(src.value)) {
+			src=null;
+			System.out.println("Vertex removed from Graph");
+			}
+			else {
+				System.out.println("Unable to remove vertex! Please remove all the edges");
+		}
+			
+		}
+		else
+			System.out.println("Unable to remove vertex!  Please remove edges from "+src.value);
+		
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		GraphV2 gr = new GraphV2();
@@ -97,9 +121,17 @@ public class GraphV2 {
 		gr.addAdjacents(C, D);
 		gr.addAdjacents(D, B);
 		gr.addAdjacents(D, C);
-		gr.addAdjacents(E, D);
+		gr.addAdjacents(E, A);
 		
 		System.out.println(gr.noOfEdges());
+		gr.printGraph();
+		gr.removeAdjacent(A, A);
+		System.out.println(gr.noOfEdges());
+		gr.printGraph();
+		gr.removeAdjacent(A, B);
+		gr.removeAdjacent(E, A);
+		
+		gr.removeVertex(A);
 		gr.printGraph();
 		
 		
