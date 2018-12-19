@@ -1,5 +1,6 @@
 package datastructures;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -11,14 +12,14 @@ public class GraphV2 {
 	Node vertex;
 	private int vertices;
 	private int edges;
-	private Map<Object, Set<Object>> map;
+	private Map<String, Set<String>> map;
 
 	static class Node {
 
-		Object value;
-		Set<Object> set;
+		String value;
+		Set<String> set;
 
-		public Node(Object v) {
+		public Node(String v) {
 
 			value = v;
 			set = new HashSet<>();
@@ -34,7 +35,7 @@ public class GraphV2 {
 
 	}
 
-	public Node addVertex(Object v) {
+	public Node addVertex(String v) {
 
 		vertex = new Node(v);
 		
@@ -71,9 +72,9 @@ public class GraphV2 {
 	public void printGraph(){
 		
 		
-		Set<Entry<Object, Set<Object>>> entrySet = map.entrySet();
+		Set<Entry<String, Set<String>>> entrySet = map.entrySet();
 		
-		for (Entry<Object, Set<Object>> entry : entrySet) {
+		for (Entry<String, Set<String>> entry : entrySet) {
 			System.out.println(entry.getKey()+": "+entry.getValue());
 		}
 	}
@@ -91,7 +92,7 @@ public class GraphV2 {
 		
 		if(src.set.isEmpty()) {
 			
-			if(!map.keySet().contains(src.value)) {
+			if(!map.values().contains(src.value)) {
 			src=null;
 			System.out.println("Vertex removed from Graph");
 			}
@@ -104,14 +105,29 @@ public class GraphV2 {
 			System.out.println("Unable to remove vertex!  Please remove edges from "+src.value);
 		
 	}
+public void removeVertex2(Node src){
+		
+		if(src.set.isEmpty()) {
+			
+		
+			
+			
+		}
+				
+			
+		
+		else
+			System.out.println("Unable to remove vertex!  Please remove edges from "+src.value);
+		
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		GraphV2 gr = new GraphV2();
-		Node A = gr.addVertex('A');
-		Node B = gr.addVertex('B');
-		Node C = gr.addVertex('C');
-		Node D = gr.addVertex('D');
-		Node E = gr.addVertex('E');
+		Node A = gr.addVertex("A");
+		Node B = gr.addVertex("B");
+		Node C = gr.addVertex("C");
+		Node D = gr.addVertex("D");
+		Node E = gr.addVertex("E");
 
 		System.out.println(gr.noOfVertices());
 
@@ -129,7 +145,7 @@ public class GraphV2 {
 		System.out.println(gr.noOfEdges());
 		gr.printGraph();
 		gr.removeAdjacent(A, B);
-		gr.removeAdjacent(E, A);
+		//gr.removeAdjacent(E, A);
 		
 		gr.removeVertex(A);
 		gr.printGraph();
